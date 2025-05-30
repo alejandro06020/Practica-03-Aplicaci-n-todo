@@ -29,3 +29,9 @@ Una vez lanzada la aplicación puedes abrir un navegador y probar la página de 
 
 - [http://localhost:8080/login](http://localhost:8080/login)
 # TodoListSpringBoot
+## 📋 Tablero de Trello
+
+El tablero de Trello del proyecto se encuentra en el siguiente enlace:
+
+👉 [Link del tablero en Trello](https://trello.com/invite/b/68364a26decd162c9212ec78/ATTI282b640e9b22b382e43328b732806143715AD31E/todolist-epn)
+
