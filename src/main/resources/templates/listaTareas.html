@@ -4,6 +4,28 @@
 <head th:replace="fragments :: head (titulo='Login')"></head>
 
 <body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-info">
+	  <a class="navbar-brand" href="#">Menu</a>
+	  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+	    <ul class="navbar-nav" style="width:100%">
+	      <li class="nav-item active">
+	        <a class="nav-link" th:href="@{/usuarios/{id}/aboutIn(id=${usuario.id})}">ToDoList<span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" th:href="@{/usuarios/{id}/tareas(id=${usuario.id})}">Tareas</a>
+	      </li>
+	      <li class="nav-item dropdown" style="margin-left:70%">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" 
+			data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${usuario.nombre}">
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	          <a class="dropdown-item" href="#">Cuenta</a>
+	          <a class="dropdown-item" href="/logout"th:text="'Cerrar sesion ' + ${usuario.nombre}">Cerrar secion</a>
+	        </div>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
 <div class="container-fluid">
 
     <div class="row mt-3">
@@ -26,7 +48,7 @@
                 <tr th:each="tarea: ${tareas}">
                     <td th:text="${tarea.id}"></td>
                     <td th:text="${tarea.titulo}"></td>
-                    <td><a class="btn btn-primary btn-xs" th:href="@{/tareas/{id}/editar(id=${tarea.id})}"/>editar</a>
+                    <td><a class="btn btn-primary btn-xs" th:href="@{/tareas/{id}/editar/{id2}(id=${tarea.id},id2=${usuario.id})}"/>editar</a>
                         <button class="btn btn-danger btn-xs" onmouseover="" style="cursor: pointer;"
                            th:onclick="'del(\'/tareas/' + ${tarea.id} + '\')'">borrar</button>
                     </td>

@@ -200,4 +200,20 @@ public class TareaWebTest {
         this.mockMvc.perform(get(urlListado))
                 .andExpect(content().string(containsString("Limpiar cristales coche")));
     }
+    //Test para testear el get para el formulario de editartarea con el menu nuevo
+    @Test
+    public void editarTareaGet() throws Exception{
+        // Un usuario con dos tareas en la BD
+        Map<String, Long> ids = addUsuarioTareasBD();
+        Long usuarioId = ids.get("usuarioId");
+        Long tareaLavarCocheId = ids.get("tareaId");
+
+        // Ver el comentario en el primer test
+        when(managerUserSession.usuarioLogeado()).thenReturn(usuarioId);
+
+        // realizamos una petición get a la url y comprobamos que este la barra de menu
+
+        String urlEditar = "/tareas/" + tareaLavarCocheId + "/editar/"+usuarioId;
+        this.mockMvc.perform(get(urlEditar)).andExpect(content().string(containsString("Menu")));
+    }
 }

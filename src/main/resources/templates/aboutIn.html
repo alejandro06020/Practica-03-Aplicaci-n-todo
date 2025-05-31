@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments :: head (titulo='Login')"></head>
+<head th:replace="fragments :: head (titulo='Acerca de')"></head>
 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-info">
@@ -27,19 +27,15 @@
 		  </div>
 		</nav>
 <div class="container-fluid">
+    <div class="container-fluid">
+        <h1>ToDoList</h1>
+        <ul>
+            <li>Desarrollada por Alejandro Minda </li>
+            <li>Versión 1.0.1</li>
+            <li>Fecha de release: 31/05/2025</li>
+        </ul>
+    </div>
 
-    <h2 th:text="'Nueva tarea para el usuario ' + ${usuario.getNombre()}"></h2>
-
-    <form method="post" th:action="@{/usuarios/{id}/tareas/nueva(id=${usuario.id})}" th:object="${tareaData}">
-        <div class="col-6">
-        <div class="form-group">
-            <label for="titulo">Título de la tarea:</label>
-            <input class="form-control" id="titulo" name="titulo" required th:field="*{titulo}" type="text"/>
-        </div>
-        <button class="btn btn-primary" type="submit">Crear tarea</button>
-        <a class="btn btn-link" th:href="@{/usuarios/{id}/tareas(id=${usuario.id})}">Cancelar</a>
-        </div>
-    </form>
 </div>
 
 <div th:replace="fragments::javascript"/>

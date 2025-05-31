@@ -52,7 +52,7 @@ public class TareaController {
                              HttpSession session) {
 
         comprobarUsuarioLogeado(idUsuario);
-
+        
         tareaService.nuevaTareaUsuario(idUsuario, tareaData.getTitulo());
         flash.addFlashAttribute("mensaje", "Tarea creada correctamente");
         return "redirect:/usuarios/" + idUsuario + "/tareas";
@@ -70,8 +70,8 @@ public class TareaController {
         return "listaTareas";
     }
 
-    @GetMapping("/tareas/{id}/editar")
-    public String formEditaTarea(@PathVariable(value="id") Long idTarea, @ModelAttribute TareaData tareaData,
+    @GetMapping("/tareas/{id}/editar/{id2}")
+    public String formEditaTarea(@PathVariable(value="id") Long idTarea, @PathVariable(value="id2") Long idUsuario, @ModelAttribute TareaData tareaData,
                                  Model model, HttpSession session) {
 
         TareaData tarea = tareaService.findById(idTarea);
@@ -80,6 +80,9 @@ public class TareaController {
         }
 
         comprobarUsuarioLogeado(tarea.getUsuarioId());
+        
+        UsuarioData usuario = usuarioService.findById(idUsuario);
+    	model.addAttribute("usuario", usuario);
 
         model.addAttribute("tarea", tarea);
         tareaData.setTitulo(tarea.getTitulo());
