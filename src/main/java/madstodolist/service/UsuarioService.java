@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
@@ -71,5 +74,17 @@ public class UsuarioService {
         else {
             return modelMapper.map(usuario, UsuarioData.class);
         }
+    }
+    //Metodo para enviar la lista de usuarios
+    @Transactional(readOnly = true)
+    public List<UsuarioData> getAll(){
+    	logger.debug("Devolviendo todas los usuarios" );
+    	List<Usuario> p = (List<Usuario>) usuarioRepository.findAll();
+    	if(p==null) {
+    		throw new TareaServiceException("No hay usuarios");
+    	}
+    	List<UsuarioData> usuarios =p.stream().map(usuario -> modelMapper.map(usuario,UsuarioData.class))
+    			.collect(Collectors.toList());
+    	return usuarios;
     }
 }
