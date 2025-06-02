@@ -8,6 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.List;
 
 @SpringBootTest
 @Sql(scripts = "/clean-db.sql")
@@ -152,5 +155,21 @@ public class UsuarioServiceTest {
         assertThat(usuario.getId()).isEqualTo(usuarioId);
         assertThat(usuario.getEmail()).isEqualTo("user@ua");
         assertThat(usuario.getNombre()).isEqualTo("Usuario Ejemplo");
+    }
+    //Test para la lista de usuarios
+    @Test
+    public void servicioListaUsuarios() {
+    	// GIVEN
+        // Un usuario en la BD
+
+        Long usuarioId = addUsuarioBD();
+        
+        //WHEN
+        //Se recupera la lista de usuarios
+        List<UsuarioData> listaUsuarios = usuarioService.getAll();
+        
+        //Then
+        //Se debe tener una lista con un usuario
+        assertEquals(1, listaUsuarios.size());
     }
 }
