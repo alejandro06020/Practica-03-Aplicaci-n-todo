@@ -1,7 +1,7 @@
 package madstodolist.controller;
 
+import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
@@ -51,5 +51,20 @@ public class ListaUsuariosTest {
         String url = "/registrados";
         this.mockMvc.perform(get(url))
                 .andExpect(content().string(containsString("user@ua")));
+    }
+    //Test para probar la pagina de descripcion de usuario
+    @Test
+    public void descripcionUsuarioGet() throws Exception {
+    	// GIVEN
+        // Un usuario en la BD
+
+        Long usuarioId = addUsuarioBD();
+        // WHEN, THEN
+        // se realiza la petición GET a la descripcion del usuario,
+        // el HTML devuelto contiene los datos del usuario.
+        String url = "/registrados/"+usuarioId.toString();
+        this.mockMvc.perform(get(url)).andExpect(content().string(
+        		allOf(containsString("Usuario Ejemplo"),
+        				containsString("1"),containsString("user@ua"))));
     }
 }
