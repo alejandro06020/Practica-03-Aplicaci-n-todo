@@ -35,3 +35,7 @@ El tablero de Trello del proyecto se encuentra en el siguiente enlace:
 
 👉 [Link del tablero en Trello](https://trello.com/invite/b/68364a26decd162c9212ec78/ATTI282b640e9b22b382e43328b732806143715AD31E/todolist-epn)
 
+## Imagen de Dockerhub de la aplicacion
+La imagen de docker de la aplicacion se encutra aqui:
+
+👉[Link de la imagen en Dockerhub](https://hub.docker.com/r/alejandrominda/mads-todolist)

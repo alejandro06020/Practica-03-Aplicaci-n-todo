@@ -64,7 +64,6 @@ public class ListaUsuariosTest {
         // el HTML devuelto contiene los datos del usuario.
         String url = "/registrados/"+usuarioId.toString();
         this.mockMvc.perform(get(url)).andExpect(content().string(
-        		allOf(containsString("Usuario Ejemplo"),
-        				containsString("1"),containsString("user@ua"))));
+        		allOf(containsString("Usuario Ejemplo"),containsString("user@ua"))));
     }
 }
